@@ -20,3 +20,13 @@ create_logs() {
         echo "Data utworzenia: $(date)" >> log$i.txt
     done
 }
+
+# Funkcja wyświetlająca pomoc
+show_help() {
+    echo "Użycie: skrypt.sh [OPCJA]"
+    echo "Opcje:"
+    echo "  --date         Wyświetla dzisiejszą datę"
+    echo "  --ignore       Tworzy plik .gitignore ignorujący pliki z nazwą zawierającą 'log'"
+    echo "  --logs [N]     Tworzy pliki log (domyślnie 100 lub podana liczba N)"
+    echo "  --help         Wyświetla pomoc"
+}
