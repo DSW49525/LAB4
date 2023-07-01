@@ -30,3 +30,23 @@ show_help() {
     echo "  --logs [N]     Tworzy pliki log (domyślnie 100 lub podana liczba N)"
     echo "  --help         Wyświetla pomoc"
 }
+
+# Wybieranie odpowiedniej akcji na podstawie argumentu
+case "$1" in
+    --date)
+        show_date
+        ;;
+    --ignore)
+        create_gitignore
+        ;;
+    --logs)
+        create_logs "$2"
+        ;;
+    --help)
+        show_help
+        ;;
+    *)
+        echo "Nieznana opcja. Użyj --help, aby uzyskać pomoc."
+        exit 1
+        ;;
+esac
