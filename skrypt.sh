@@ -25,10 +25,10 @@ create_logs() {
 show_help() {
     echo "Użycie: skrypt.sh [OPCJA]"
     echo "Opcje:"
-    echo "  --date         Wyświetla dzisiejszą datę"
+    echo "  --date, -d         Wyświetla dzisiejszą datę"
     echo "  --ignore       Tworzy plik .gitignore ignorujący pliki z nazwą zawierającą 'log'"
-    echo "  --logs [N]     Tworzy pliki log (domyślnie 100 lub podana liczba N)"
-    echo "  --help         Wyświetla pomoc"
+    echo "  --logs, -l [N]     Tworzy pliki log (domyślnie 100 lub podana liczba N)"
+    echo "  --help, -h         Wyświetla pomoc"
 }
 
 # Wybieranie odpowiedniej akcji na podstawie argumentu
