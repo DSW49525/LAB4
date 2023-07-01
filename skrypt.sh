@@ -21,6 +21,17 @@ create_logs() {
     done
 }
 
+# Funkcja tworząca pliki error
+create_errors() {
+    local num_files=${1:-100}  # Jeśli nie podano liczby plików, domyślnie tworzy 100 plików
+
+    for ((i=1; i<=$num_files; i++)); do
+        echo "Nazwa pliku: error$i.txt" > error$i.txt
+        echo "Nazwa skryptu: skrypt.sh" >> error$i.txt
+        echo "Data utworzenia: $(date)" >> error$i.txt
+    done
+}
+
 # Funkcja inicjalizująca repozytorium
 init_repository() {
     local repo_url="<adres_repozytorium>"
@@ -38,32 +49,29 @@ show_help() {
     echo "Użycie: skrypt.sh [OPCJA]"
     echo "Opcje:"
     echo "  --date, -d         Wyświetla dzisiejszą datę"
-    echo "  --ignore       Tworzy plik .gitignore ignorujący pliki z nazwą zawierającą 'log'"
+    echo "  --ignore, -i       Tworzy plik .gitignore ignorujący pliki z nazwą zawierającą 'log'"
     echo "  --logs, -l [N]     Tworzy pliki log (domyślnie 100 lub podana liczba N)"
-    echo "  --help, -h         Wyświetla pomoc"
+    echo "  --error, -e [N]    Tworzy pliki error (domyślnie 100 lub podana liczba N)"
     echo "  --init             Klonuje całe repozytorium i ustawia ścieżkę w zmiennej środowiskowej PATH"
+    echo "  --help, -h         Wyświetla pomoc"
 }
-
-
 
 # Wybieranie odpowiedniej akcji na podstawie argumentu
 case "$1" in
     --date | -d)
         show_date
         ;;
-    --ignore)
+    --ignore | -i)
         create_gitignore
         ;;
     --logs | -l)
         create_logs "$2"
         ;;
-    --help | -h)
-        show_help
+    --error | -e)
+        create_errors "$2"
         ;;
     --init)
         init_repository
-    *)
-        echo "Nieznana opcja. Użyj --help, aby uzyskać pomoc."
-        exit 1
         ;;
-esac
+    --help | -h)
+        show_help
